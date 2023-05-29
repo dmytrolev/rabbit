@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <script src="//cdn.jsdelivr.net/npm/phaser@3.60.0/dist/phaser.min.js"></script>
+        <title>This is Rabbit website</title>
+    </head>
+    <body>
+        <h1>Hello from rabbit!</h1>
+        <script>
+
+class Example extends Phaser.Scene
+{
+    constructor ()
+    {
+        super();
+    }
+
+    preload ()
+    {
+        this.load.image('palm', 'palm.png');
+        this.load.spritesheet("rabbit", "rabbit.png", { frameWidth: 100, frameHeight: 100 });
+        //this.load.atlas('rabbit', 'rabbit.png', 'rabbit.json');
+    }
+
+    create ()
+    {
+        this.add.image(100, 100, 'palm');
+        this.anims.create({
+            key: "jump-rabbit",
+            frameRate: 15,
+            frames: this.anims.generateFrameNumbers("rabbit", { start: 0, end: 6 }),
+            repeat: -1
+        });
+
+        var plane = this.add.sprite(100, 200, "rabbit");
+        plane.play("jump-rabbit");
+
+    }
+    
+    updateScene() {}
+
+}
+
+const config = {
+    type: Phaser.AUTO,
+    width: 800,
+    height: 600,
+    scene: Example
+};
+
+const game = new Phaser.Game(config);
+        </script>
+    </body>
+</html>
